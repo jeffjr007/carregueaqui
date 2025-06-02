@@ -62,6 +62,9 @@ export const StationDetailsPopup = ({
     }
   }, [favoriteStations, station.id]);
 
+  // Fallback para image_url: se não existir, usa o padrão /images/stations/{id}.jpg
+  const imageUrl = station.image_url || `/images/stations/${station.id}.jpg`;
+
   return (
     <>
       <Card className="fixed inset-x-4 bottom-20 md:bottom-24 md:left-auto md:right-4 md:w-[450px] lg:w-[500px] p-4 bg-white/95 backdrop-blur-sm z-50 rounded-lg shadow-lg max-h-[75vh] md:max-h-[85vh] overflow-y-auto scrollbar-hide">
@@ -84,7 +87,7 @@ export const StationDetailsPopup = ({
             <StationAmenities amenities={station.amenities} />
           )}
 
-          <StationPhotos photos={station.image_url ? [station.image_url, ...stationPhotos] : stationPhotos} />
+          <StationPhotos photos={[imageUrl, ...(station.photos || [])].filter(Boolean)} />
 
           <StationActivity recentSessions={recentSessions} />
 
