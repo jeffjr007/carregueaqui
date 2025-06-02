@@ -1,0 +1,58 @@
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .mapboxgl-popup-content {
+    @apply max-w-[90vw] px-3 py-2;
+  }
+  
+  .mapboxgl-ctrl-geocoder {
+    @apply max-w-full;
+  }
+  
+  input, button, select, textarea {
+    @apply text-base;
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+
+  .mobile-bottom-spacing {
+    margin-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .bottom-spacing {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  
+  /* Fix z-index for bottom nav */
+  .fixed-bottom-nav {
+    z-index: 40 !important;
+  }
+  
+  /* Ensure popup appears above the bottom nav */
+  .station-popup {
+    z-index: 50 !important;
+  }
+}
+
+/* Avoid text becoming too small */
+@media (max-width: 480px) {
+  .prevent-small-text {
+    font-size: 1rem !important;
+  }
+}
+
+/* Improvements for modals on mobile devices */
+@media (max-width: 640px) {
+  .modal-mobile-full {
+    @apply fixed inset-0 rounded-none !important;
+    max-height: 100vh !important;
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 50 !important;
+  }
+  
+  /* Ensure modals appear above the bottom nav */
+  .modal-mobile-full {
+    bottom: 0 !important;
+    padding-bottom: env(safe-area-inset-bottom, 16px) !important;
+  }
+}

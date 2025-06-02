@@ -1,0 +1,82 @@
+
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "send": "Enviar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "search": "Buscar",
+    "filters": "Filtros"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgot_password": "¿Olvidó su contraseña?",
+    "confirm_password": "Confirmar contraseña",
+    "name": "Nombre",
+    "username": "Nombre de usuario"
+  },
+  "map": {
+    "title": "Mapa de Estaciones de Carga",
+    "search_placeholder": "Buscar estaciones o direcciones",
+    "no_results": "No se encontraron resultados",
+    "directions": "Cómo llegar",
+    "distance": "Distancia",
+    "duration": "Duración"
+  },
+  "station": {
+    "details": "Detalles de la Estación",
+    "rating": "Calificación",
+    "reviews": "opiniones",
+    "amenities": "Comodidades",
+    "restaurant": "Restaurante",
+    "wifi": "Wi-Fi",
+    "bathroom": "Baño",
+    "parking": "Estacionamiento",
+    "shop": "Tienda",
+    "photos": "Fotos",
+    "questions": "Preguntas",
+    "rate": "Calificar",
+    "start_charging": "Iniciar Carga",
+    "favorite": "Favorito",
+    "directions": "Cómo Llegar",
+    "share": "Compartir"
+  },
+  "profile": {
+    "title": "Perfil",
+    "edit": "Editar Perfil",
+    "settings": "Configuración",
+    "history": "Historial",
+    "favorites": "Favoritos",
+    "cars": "Mis Coches",
+    "add_car": "Añadir Coche",
+    "dark_mode": "Modo Oscuro",
+    "language": "Idioma"
+  },
+  "charging": {
+    "history": "Historial de Carga",
+    "sessions": "Sesiones de Carga",
+    "active_session": "Sesión Activa",
+    "completed": "Completado",
+    "in_progress": "En Progreso",
+    "duration": "Duración",
+    "energy": "Energía",
+    "cost": "Costo",
+    "start_time": "Hora de inicio",
+    "end_time": "Hora de finalización"
+  },
+  "offline": {
+    "offline_mode": "Modo Sin Conexión",
+    "sync_complete": "Sincronización completada",
+    "sync_error": "Error de sincronización",
+    "sync_in_progress": "Sincronizando datos..."
+  }
+}

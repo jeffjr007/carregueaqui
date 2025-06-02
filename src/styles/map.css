@@ -1,0 +1,81 @@
+/* Ajustes do Mapbox */
+.mapboxgl-map {
+  @apply rounded-lg shadow-lg;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.mapboxgl-ctrl-top-right {
+  @apply mt-4 mr-4;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  @apply mb-20;
+}
+
+.poi-marker {
+  @apply text-2xl cursor-pointer transition-transform duration-200;
+}
+
+.poi-marker:hover {
+  @apply scale-110;
+}
+
+.glass-morphism {
+  @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)] text-white;
+}
+
+.neo-blur {
+  @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+}
+
+.speed-limit-marker {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.speed-limit-marker:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* Fix for map container size */
+.map-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Controles customizados do mapa responsivos */
+.map-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  right: 16px;
+  top: 80px;
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  .map-controls {
+    flex-direction: row;
+    gap: 8px;
+    right: 50%;
+    left: 50%;
+    top: auto;
+    bottom: 16px;
+    transform: translateX(50%);
+  }
+  .map-controls button {
+    width: 40px;
+    height: 40px;
+  }
+}

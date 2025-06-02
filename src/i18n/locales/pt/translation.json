@@ -1,0 +1,82 @@
+
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "send": "Enviar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "search": "Buscar",
+    "filters": "Filtros"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrar",
+    "logout": "Sair",
+    "email": "E-mail",
+    "password": "Senha",
+    "forgot_password": "Esqueceu a senha?",
+    "confirm_password": "Confirmar senha",
+    "name": "Nome",
+    "username": "Nome de usuário"
+  },
+  "map": {
+    "title": "Mapa de Carregadores",
+    "search_placeholder": "Buscar estações ou endereços",
+    "no_results": "Nenhum resultado encontrado",
+    "directions": "Como chegar",
+    "distance": "Distância",
+    "duration": "Duração"
+  },
+  "station": {
+    "details": "Detalhes da Estação",
+    "rating": "Avaliação",
+    "reviews": "avaliações",
+    "amenities": "Comodidades",
+    "restaurant": "Restaurante",
+    "wifi": "Wi-Fi",
+    "bathroom": "Banheiro",
+    "parking": "Estacionamento",
+    "shop": "Loja",
+    "photos": "Fotos",
+    "questions": "Perguntas",
+    "rate": "Avaliar",
+    "start_charging": "Iniciar Carregamento",
+    "favorite": "Favoritar",
+    "directions": "Como Chegar",
+    "share": "Compartilhar"
+  },
+  "profile": {
+    "title": "Perfil",
+    "edit": "Editar Perfil",
+    "settings": "Configurações",
+    "history": "Histórico",
+    "favorites": "Favoritos",
+    "cars": "Meus Carros",
+    "add_car": "Adicionar Carro",
+    "dark_mode": "Modo Escuro",
+    "language": "Idioma"
+  },
+  "charging": {
+    "history": "Histórico de Carregamento",
+    "sessions": "Sessões de Carregamento",
+    "active_session": "Sessão Ativa",
+    "completed": "Concluído",
+    "in_progress": "Em Andamento",
+    "duration": "Duração",
+    "energy": "Energia",
+    "cost": "Custo",
+    "start_time": "Início",
+    "end_time": "Fim"
+  },
+  "offline": {
+    "offline_mode": "Modo Offline",
+    "sync_complete": "Sincronização concluída",
+    "sync_error": "Erro na sincronização",
+    "sync_in_progress": "Sincronizando dados..."
+  }
+}

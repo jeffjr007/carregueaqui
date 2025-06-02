@@ -1,0 +1,82 @@
+
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "send": "Send",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "filters": "Filters"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot password?",
+    "confirm_password": "Confirm password",
+    "name": "Name",
+    "username": "Username"
+  },
+  "map": {
+    "title": "Charging Stations Map",
+    "search_placeholder": "Search for stations or addresses",
+    "no_results": "No results found",
+    "directions": "Get Directions",
+    "distance": "Distance",
+    "duration": "Duration"
+  },
+  "station": {
+    "details": "Station Details",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "amenities": "Amenities",
+    "restaurant": "Restaurant",
+    "wifi": "Wi-Fi",
+    "bathroom": "Bathroom",
+    "parking": "Parking",
+    "shop": "Shop",
+    "photos": "Photos",
+    "questions": "Questions",
+    "rate": "Rate",
+    "start_charging": "Start Charging",
+    "favorite": "Favorite",
+    "directions": "Get Directions",
+    "share": "Share"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "settings": "Settings",
+    "history": "History",
+    "favorites": "Favorites",
+    "cars": "My Cars",
+    "add_car": "Add Car",
+    "dark_mode": "Dark Mode",
+    "language": "Language"
+  },
+  "charging": {
+    "history": "Charging History",
+    "sessions": "Charging Sessions",
+    "active_session": "Active Session",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "duration": "Duration",
+    "energy": "Energy",
+    "cost": "Cost",
+    "start_time": "Start Time",
+    "end_time": "End Time"
+  },
+  "offline": {
+    "offline_mode": "Offline Mode",
+    "sync_complete": "Sync complete",
+    "sync_error": "Sync error",
+    "sync_in_progress": "Syncing data..."
+  }
+}

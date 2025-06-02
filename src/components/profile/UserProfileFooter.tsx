@@ -1,0 +1,113 @@
+
+import { Button } from "@/components/ui/button";
+import { FileText, Shield, History, LogOut, ChevronRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useState, useEffect } from "react";
+import { isCurrentUserAdmin } from "@/utils/adminUtils";
+
+interface UserProfileFooterProps {
+  onLogout: () => Promise<void>;
+  onAdminPanel?: () => void;
+}
+
+export const UserProfileFooter = ({ onLogout, onAdminPanel }: UserProfileFooterProps) => {
+  const { toast } = useToast();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    // Check if user is admin
+    const checkAdminStatus = async () => {
+      const adminStatus = await isCurrentUserAdmin();
+      setIsAdmin(adminStatus);
+    };
+    
+    checkAdminStatus();
+  }, []);
+  
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await onLogout();
+      toast({
+        title: "Logout bem-sucedido",
+        description: "Você foi desconectado com sucesso.",
+      });
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+      toast({
+        title: "Erro ao sair",
+        description: "Não foi possível desconectar. Por favor, tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
+  return (
+    <div className="mt-6 space-y-1 pb-24 md:pb-4">
+      <Button
+        variant="ghost"
+        className="w-full justify-between py-3 px-3 h-auto"
+      >
+        <div className="flex items-center">
+          <FileText className="h-4 w-4 mr-3" />
+          <span>Termos de Uso</span>
+        </div>
+        <ChevronRight className="h-4 w-4 text-gray-400" />
+      </Button>
+      
+      <Button
+        variant="ghost"
+        className="w-full justify-between py-3 px-3 h-auto"
+      >
+        <div className="flex items-center">
+          <Shield className="h-4 w-4 mr-3" />
+          <span>Política de Privacidade</span>
+        </div>
+        <ChevronRight className="h-4 w-4 text-gray-400" />
+      </Button>
+      
+      <Button
+        variant="ghost"
+        className="w-full justify-between py-3 px-3 h-auto"
+      >
+        <div className="flex items-center">
+          <History className="h-4 w-4 mr-3" />
+          <span>Histórico de Pagamentos</span>
+        </div>
+        <ChevronRight className="h-4 w-4 text-gray-400" />
+      </Button>
+      
+      <div className="pt-4 space-y-2">
+        <Button
+          variant="destructive"
+          className="w-full bg-red-500 hover:bg-red-600 text-white"
+          onClick={handleLogout}
+          disabled={isLoggingOut}
+        >
+          {isLoggingOut ? (
+            <>Saindo...</>
+          ) : (
+            <>
+              <LogOut className="h-4 w-4 mr-2" />
+              <span>Sair da Conta</span>
+            </>
+          )}
+        </Button>
+        
+        {isAdmin && onAdminPanel && (
+          <Button
+            variant="outline"
+            className="w-full border-purple-500 text-purple-500 hover:bg-purple-50"
+            onClick={onAdminPanel}
+          >
+            <Shield className="h-4 w-4 mr-2" />
+            <span>Painel de Administrador</span>
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+};

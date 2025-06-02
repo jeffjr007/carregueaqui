@@ -1,0 +1,69 @@
+
+{
+  "short_name": "EV Charging",
+  "name": "EV Charging Station Finder",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "app-logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "app-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#4ADE80",
+  "background_color": "#ffffff",
+  "prefer_related_applications": false,
+  "categories": ["navigation", "travel", "utilities"],
+  "screenshots": [],
+  "description": "Encontre estações de carregamento EV próximas, verifique disponibilidade e gerencie suas sessões",
+  "dir": "auto",
+  "lang": "pt-BR",
+  "scope": "/",
+  "serviceworker": {
+    "src": "./service-worker.js"
+  },
+  "shortcuts": [
+    {
+      "name": "Estações Favoritas",
+      "url": "/favorites",
+      "icons": [
+        {
+          "src": "heart.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Meu Perfil",
+      "url": "/profile",
+      "icons": [
+        {
+          "src": "profile.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "display_override": ["standalone", "minimal-ui"],
+  "theme_color_dark": "#111827",
+  "background_color_dark": "#1F2937",
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "route_to": "existing-client-navigate"
+  }
+}

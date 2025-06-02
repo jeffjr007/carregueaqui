@@ -1,0 +1,21 @@
+
+/* Import base styles */
+@import './styles/base.css';
+
+/* Import component styles */
+@import './styles/map.css';
+
+/* Import utilities */
+@import './styles/utilities.css';
+
+/* Import animations */
+@import './styles/animations.css';
+
+/* Import responsive adaptations */
+@import './styles/responsive.css';
+
+/* Import accessibility styles */
+@import './styles/accessibility.css';
+
+/* Import miscellaneous styles */
+@import './styles/misc.css';

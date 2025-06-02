@@ -1,0 +1,16 @@
+
+/* Melhorias de acessibilidade para foco */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Botões grandes para touch */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
