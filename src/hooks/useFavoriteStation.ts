@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { toggleFavoriteStation, checkFavoriteStatus } from "@/utils/stationUtils";
 import { useUser } from "@supabase/auth-helpers-react";
+import { useMapState } from "@/contexts/MapStateContext";
 
 export const useFavoriteStation = (stationId?: string, initialFavorite = false) => {
   const { toast } = useToast();
@@ -11,46 +10,41 @@ export const useFavoriteStation = (stationId?: string, initialFavorite = false) 
   const [favoriteStatus, setFavoriteStatus] = useState(initialFavorite);
   const [initialLoading, setInitialLoading] = useState(true);
 
+  const { isFavorite, toggleFavoriteStation: contextToggleFavorite } = useMapState();
+
   useEffect(() => {
-    if (stationId && user) {
-      checkFavoriteStatus(stationId, user.id)
-        .then(status => {
-          setFavoriteStatus(status);
-        })
-        .catch(error => {
-          console.error("Erro ao verificar status de favorito:", error);
-        })
-        .finally(() => {
-          setInitialLoading(false);
-        });
+    if (stationId) {
+      const status = isFavorite(stationId);
+      setFavoriteStatus(status);
+      setInitialLoading(false);
     } else {
       setInitialLoading(false);
     }
-  }, [stationId, user]);
+  }, [stationId, isFavorite]);
 
   const handleToggleFavorite = async () => {
-    if (!stationId || !user) {
-      toast({
-        title: "É necessário estar logado",
-        description: "Faça login para adicionar estações aos favoritos.",
-        variant: "destructive"
-      });
+    if (!stationId) {
+      console.warn("Cannot toggle favorite without stationId");
       return;
     }
 
     setLoading(true);
     try {
-      const newFavoriteState = await toggleFavoriteStation(stationId, user.id);
+      const currentState = isFavorite(stationId);
       
+      contextToggleFavorite(stationId);
+      
+      const newFavoriteStateAfterToggle = !currentState;
+
       toast({
-        title: newFavoriteState ? "Adicionado aos favoritos" : "Removido dos favoritos",
-        description: newFavoriteState 
+        title: newFavoriteStateAfterToggle ? "Adicionado aos favoritos" : "Removido dos favoritos",
+        description: newFavoriteStateAfterToggle 
           ? "Estação adicionada aos seus favoritos." 
           : "Estação removida dos seus favoritos.",
       });
       
-      setFavoriteStatus(newFavoriteState);
-      return newFavoriteState;
+      setFavoriteStatus(isFavorite(stationId));
+      return isFavorite(stationId);
       
     } catch (error) {
       console.error("Erro ao alternar favorito:", error);
@@ -59,8 +53,8 @@ export const useFavoriteStation = (stationId?: string, initialFavorite = false) 
         description: "Não foi possível alterar o status de favorito.",
         variant: "destructive"
       });
-    } finally {
       setLoading(false);
+      throw error;
     }
   };
 
