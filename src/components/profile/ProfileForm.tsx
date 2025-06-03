@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useUser } from "@supabase/auth-helpers-react";
 import { isValidName, getNameErrorMessage } from "@/lib/validation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { PostgrestSingleResponse } from '@supabase/supabase-js';
 
 interface ProfileFormProps {
   initialName: string;
@@ -16,29 +17,66 @@ interface ProfileFormProps {
   onSaveSuccess: () => void;
 }
 
-export const ProfileForm = ({ 
-  initialName, 
-  loading, 
-  setLoading, 
-  onSaveSuccess 
+// Define the expected structure of the profile data from Supabase
+interface ProfileData {
+  username: string | null;
+  avatar_url?: string | null;
+}
+
+export const ProfileForm = ({
+  initialName,
+  loading,
+  setLoading,
+  onSaveSuccess
 }: ProfileFormProps) => {
   const [name, setName] = useState(initialName);
   const [nameError, setNameError] = useState<string | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | undefined | null>(undefined);
+  const [createdAt, setCreatedAt] = useState<string | null>(null);
   const { toast } = useToast();
   const user = useUser();
 
-  // Update local state when prop changes
   useEffect(() => {
-    setName(initialName);
-  }, [initialName]);
+    const fetchUserProfileData = async () => {
+      if (!user) return;
 
-  // Validar quando o usuário envia o formulário ou muda o nome
+      // Fetch profile data (including avatar_url if it exists)
+      const { data: profileData, error: profileError }: PostgrestSingleResponse<ProfileData> = await supabase
+        .from('profiles')
+        .select('username, avatar_url')
+        .eq('id', user.id)
+        .single();
+
+      if (profileError) {
+        console.error("Error fetching profile data:", profileError);
+      }
+
+      if (profileData) {
+        setName(profileData.username || '');
+        setAvatarUrl(profileData.avatar_url || undefined);
+      }
+
+      setCreatedAt(user.created_at);
+    };
+
+    fetchUserProfileData();
+  }, [user]);
+
+  // Update local name state when initialName prop changes
   useEffect(() => {
-    if (formSubmitted) {
+    if (initialName !== name) {
+       setName(initialName);
+    }
+  }, [initialName, name]);
+
+  // Validate when the user submits the form or changes the name
+  useEffect(() => {
+    if (formSubmitted || (name !== initialName && name.trim() !== '')) {
       validateName();
     }
-  }, [name, formSubmitted]);
+  }, [name, formSubmitted, initialName]);
 
   const validateName = () => {
     const error = getNameErrorMessage(name);
@@ -46,39 +84,22 @@ export const ProfileForm = ({
     return !error;
   };
 
-  // Função para confirmar a sessão atual
-  const confirmSession = async () => {
-    try {
-      // Obter a sessão atual
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      // Se não houver sessão, não há o que confirmar
-      if (!session) {
-        console.log("Não há sessão para confirmar");
-        return false;
-      }
-      
-      // Tentar renovar a sessão
-      const { data, error } = await supabase.auth.refreshSession();
-      
-      if (error) {
-        console.error("Erro ao renovar sessão:", error);
-        return false;
-      } else if (data.session) {
-        console.log("Sessão renovada com sucesso:", data.session.user.id);
-        return true;
-      }
-      
-      return false;
-    } catch (error) {
-      console.error("Erro ao confirmar sessão:", error);
-      return false;
+  // Handle avatar file selection
+  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const handleSaveProfile = async () => {
     setFormSubmitted(true);
-    
+
     if (!validateName()) {
       toast({
         title: "Erro de validação",
@@ -87,70 +108,101 @@ export const ProfileForm = ({
       });
       return;
     }
-    
+
+    const isNameChanged = name.trim() !== initialName.trim();
+    const isAvatarChanged = avatarFile !== null || (avatarUrl === null && user?.user_metadata?.avatar_url !== null);
+
+    if (!isNameChanged && !isAvatarChanged) {
+       toast({
+         title: "Nenhuma alteração",
+         description: "Não há alterações para salvar.",
+         variant: "default",
+       });
+       setLoading(false);
+       onSaveSuccess();
+       return;
+    }
+
     try {
       setLoading(true);
-      
-      // Confirmar a sessão antes de salvar
-      const sessionConfirmed = await confirmSession();
-      
-      // Verificar se o usuário ainda está logado
+
       const { data: { session } } = await supabase.auth.getSession();
       const currentUser = session?.user;
-      
+
       if (!currentUser) {
-        console.log("Usuário não está logado. Tentando renovar sessão...");
-        
-        if (!sessionConfirmed) {
-          toast({
-            title: "Erro ao salvar perfil",
-            description: "Sua sessão expirou. Por favor, faça login novamente.",
-            variant: "destructive",
-          });
-          return;
-        }
-        
-        // Tentar obter sessão novamente após confirmar
-        const { data: { session: refreshedSession } } = await supabase.auth.getSession();
-        if (!refreshedSession?.user) {
-          toast({
-            title: "Erro ao salvar perfil",
-            description: "Você precisa estar logado para atualizar seu perfil.",
-            variant: "destructive",
-          });
-          return;
-        }
-      }
-      
-      // Sanitizar o nome antes de salvar
-      const sanitizedName = name.trim();
-      
-      const userId = currentUser?.id || user?.id;
-      
-      if (!userId) {
         toast({
           title: "Erro ao salvar perfil",
-          description: "Não foi possível identificar seu usuário.",
+          description: "Sua sessão expirou. Por favor, faça login novamente.",
           variant: "destructive",
         });
         return;
       }
-      
+
+      const sanitizedName = name.trim();
+      const userId = currentUser.id;
+
       console.log("Salvando perfil com ID:", userId, "Nome:", sanitizedName);
-      
+
+      let newAvatarUrl = avatarUrl;
+      if (avatarFile) {
+        // TODO: Implement avatar upload and get the new avatar_url
+        console.log("Avatar upload logic needs to be implemented.", avatarFile);
+         toast({
+           title: "Upload de Avatar Pendente",
+           description: "A funcionalidade de upload de avatar ainda não está implementada.",
+           variant: "default",
+         });
+         newAvatarUrl = avatarUrl; // Keep the old URL or null if it was removed
+
+      } else if (avatarUrl === null && user?.user_metadata?.avatar_url !== null) {
+          // TODO: Implement avatar deletion from storage
+           console.log("Avatar removal from storage logic needs to be implemented.");
+            toast({
+              title: "Remoção de Avatar Pendente",
+              description: "A funcionalidade de remoção de avatar no storage ainda não está implementada.",
+              variant: "default",
+            });
+             newAvatarUrl = null;
+      }
+
+      const updates: { id: string; username?: string; avatar_url?: string | null; updated_at: string } = {
+         id: userId,
+         updated_at: new Date().toISOString(),
+      };
+
+      if (isNameChanged) {
+         updates.username = sanitizedName;
+      }
+
+      if (avatarFile) {
+         // updates.avatar_url = newAvatarUrl;
+      } else if (avatarUrl === null) {
+         updates.avatar_url = null;
+      } else if (avatarUrl !== undefined && user?.user_metadata?.avatar_url === undefined) {
+         if (avatarUrl !== null) {
+             updates.avatar_url = avatarUrl;
+         }
+      }
+
+      if (!isNameChanged && !isAvatarChanged) {
+         setLoading(false);
+         onSaveSuccess();
+         return;
+      }
+
+
       const { error } = await supabase
         .from('profiles')
-        .upsert({
-          id: userId,
-          username: sanitizedName,
-          updated_at: new Date().toISOString(),
-        });
-        
+        .upsert(
+           updates,
+           { onConflict: 'id' }
+         );
+
       if (error) {
         console.error("Erro no Supabase:", error);
         throw error;
       }
-      
+
       toast({
         title: "Perfil atualizado",
         description: "Suas informações foram salvas com sucesso!",
@@ -168,8 +220,39 @@ export const ProfileForm = ({
     }
   };
 
+  const formattedCreatedAt = createdAt ? new Date(createdAt).toLocaleDateString('pt-BR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }) : 'N/A';
+
   return (
     <>
+      {createdAt && (
+        <div className="text-sm text-gray-500 mb-4">
+          Membro desde {formattedCreatedAt}
+        </div>
+      )}
+
+      <div className="space-y-2 mb-4">
+        <Label htmlFor="avatar">Foto de Perfil</Label>
+        <div className="flex items-center space-x-4">
+           <Avatar className="h-16 w-16 flex-shrink-0">
+            <AvatarFallback className="bg-gray-200">{name ? name.charAt(0).toUpperCase() : 'U'}</AvatarFallback>
+            {avatarUrl && <AvatarImage src={avatarUrl} alt="Avatar Preview" className="object-cover" />}
+          </Avatar>
+          <div className="flex-1">
+            <Input
+              id="avatar"
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              disabled={loading}
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="name">Nome</Label>
         <div className="space-y-1">
@@ -193,7 +276,7 @@ export const ProfileForm = ({
       <Button
         className="w-full mt-4"
         onClick={handleSaveProfile}
-        disabled={loading}
+        disabled={loading || nameError !== null}
       >
         {loading ? (
           <>
