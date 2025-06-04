@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
@@ -9,6 +8,7 @@ import { FormButton } from "@/components/ui/form-button";
 import AuthFooter from "./auth/AuthFooter";
 import { getEmailErrorMessage, getPasswordErrorMessage, getNameErrorMessage } from "@/lib/validation";
 import { OptimizedImage } from "./ui/optimized-image";
+import { VerificationGame } from "./auth/VerificationGame";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
   const { register, loading, error } = useAuth({ redirectTo: "/login" });
 
   // Validação em tempo real enquanto o usuário digita
@@ -63,9 +64,8 @@ const RegisterForm = () => {
       return;
     }
     
-    // Simular verificação de captcha em ambiente de desenvolvimento
     if (!captchaVerified) {
-      setCaptchaVerified(true);
+      setShowVerification(true);
       return;
     }
     
@@ -158,18 +158,15 @@ const RegisterForm = () => {
         
         <div className="mt-4">
           {!captchaVerified ? (
-            <div className="bg-gray-100 border border-gray-300 rounded-md p-4 flex items-center justify-center">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="captcha"
-                  className="h-5 w-5 rounded border-gray-300 text-primary"
-                  onChange={() => setCaptchaVerified(true)}
-                />
-                <label htmlFor="captcha" className="text-sm text-gray-700">
-                  Não sou um robô
-                </label>
-              </div>
+            <div className="bg-gray-100 border border-gray-300 rounded-md p-4 flex flex-col items-center justify-center text-sm">
+              <div className="mb-2 text-gray-600">Verificação de segurança</div>
+              <button
+                type="button"
+                onClick={() => setShowVerification(true)}
+                className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
+              >
+                Verificar que não sou um robô
+              </button>
             </div>
           ) : (
             <div className="bg-green-50 border border-green-300 rounded-md p-2 flex items-center justify-center text-sm text-green-700">
@@ -193,6 +190,16 @@ const RegisterForm = () => {
         linkText="Entre aqui" 
         onLinkClick={handleLoginClick} 
       />
+
+      {showVerification && (
+        <VerificationGame
+          onVerificationComplete={() => {
+            setCaptchaVerified(true);
+            setShowVerification(false);
+          }}
+          onClose={() => setShowVerification(false)}
+        />
+      )}
     </FormContainer>
   );
 };

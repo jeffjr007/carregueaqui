@@ -1,8 +1,6 @@
-
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import fs from 'fs';
 
@@ -30,7 +28,6 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
-      mode === 'development' && componentTagger(),
       mode === 'production' && sentryVitePlugin({
         org: env.VITE_SENTRY_ORG || "your-org",
         project: env.VITE_SENTRY_PROJECT || "your-project",

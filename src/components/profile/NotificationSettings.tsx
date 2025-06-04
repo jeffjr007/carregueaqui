@@ -1,4 +1,3 @@
-
 import { Bell } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
@@ -11,10 +10,11 @@ export const NotificationSettings = () => {
   
   return (
     <div>
-      <div className="flex items-center mb-3">
-        <Bell className="mr-2 h-5 w-5" /> 
-        <h3 className="font-medium">Notificações</h3>
-      </div>
+      {/* Removed internal heading and icon */}
+      {/* <div className="flex items-center mb-3"> */}
+      {/*   <Bell className="mr-2 h-5 w-5" /> */}
+      {/*   <h3 className="font-medium">Notificações</h3> */}
+      {/* </div> */}
       
       <Card className="p-3 border border-gray-200">
         <div className="flex justify-between items-center mb-3">

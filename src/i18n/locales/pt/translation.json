@@ -1,4 +1,3 @@
-
 {
   "common": {
     "loading": "Carregando...",
@@ -22,7 +21,18 @@
     "forgot_password": "Esqueceu a senha?",
     "confirm_password": "Confirmar senha",
     "name": "Nome",
-    "username": "Nome de usuário"
+    "username": "Nome de usuário",
+    "login_success": "Login realizado com sucesso!",
+    "register_success": "Conta criada com sucesso!",
+    "logout_success": "Logout realizado com sucesso!",
+    "reset_password_success": "E-mail de recuperação enviado!",
+    "reset_password_error": "Erro ao enviar e-mail de recuperação.",
+    "invalid_credentials": "E-mail ou senha inválidos.",
+    "email_already_exists": "Este e-mail já está em uso.",
+    "password_mismatch": "As senhas não coincidem.",
+    "invalid_email": "E-mail inválido.",
+    "password_too_short": "A senha deve ter pelo menos 6 caracteres.",
+    "required_field": "Este campo é obrigatório."
   },
   "map": {
     "title": "Mapa de Carregadores",
@@ -59,7 +69,13 @@
     "cars": "Meus Carros",
     "add_car": "Adicionar Carro",
     "dark_mode": "Modo Escuro",
-    "language": "Idioma"
+    "language": "Idioma",
+    "distance_unit": "Unidade de Distância",
+    "kilometers": "Quilômetros (km)",
+    "miles": "Milhas (mi)",
+    "appearance": "Aparência",
+    "select_language": "Selecionar idioma",
+    "dark_mode_description": "Altere o modo de cor do aplicativo."
   },
   "charging": {
     "history": "Histórico de Carregamento",
@@ -78,5 +94,15 @@
     "sync_complete": "Sincronização concluída",
     "sync_error": "Erro na sincronização",
     "sync_in_progress": "Sincronizando dados..."
+  },
+  "language": {
+    "changed": "Idioma alterado!",
+    "changed_description": "O idioma da interface foi alterado para"
+  },
+  "admin": {
+    "users_management": "Gerenciamento de Usuários",
+    "in_development": "Esta funcionalidade está em desenvolvimento.",
+    "users_management_coming_soon": "O gerenciamento de usuários estará disponível em breve.",
+    "status_message_placeholder": "Mensagem de status do administrador aparecerá aqui."
   }
 }

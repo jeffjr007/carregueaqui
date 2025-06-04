@@ -1,4 +1,3 @@
-
 {
   "common": {
     "loading": "Cargando...",
@@ -8,35 +7,46 @@
     "cancel": "Cancelar",
     "close": "Cerrar",
     "send": "Enviar",
-    "back": "Volver",
+    "back": "Atrás",
     "next": "Siguiente",
     "search": "Buscar",
     "filters": "Filtros"
   },
   "auth": {
-    "login": "Iniciar sesión",
+    "login": "Iniciar Sesión",
     "register": "Registrarse",
-    "logout": "Cerrar sesión",
+    "logout": "Cerrar Sesión",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "forgot_password": "¿Olvidó su contraseña?",
+    "forgot_password": "¿Olvidaste tu contraseña?",
     "confirm_password": "Confirmar contraseña",
     "name": "Nombre",
-    "username": "Nombre de usuario"
+    "username": "Nombre de usuario",
+    "login_success": "¡Inicio de sesión exitoso!",
+    "register_success": "¡Cuenta creada exitosamente!",
+    "logout_success": "¡Cierre de sesión exitoso!",
+    "reset_password_success": "¡Correo de recuperación enviado!",
+    "reset_password_error": "Error al enviar correo de recuperación.",
+    "invalid_credentials": "Correo o contraseña inválidos.",
+    "email_already_exists": "Este correo ya está en uso.",
+    "password_mismatch": "Las contraseñas no coinciden.",
+    "invalid_email": "Correo inválido.",
+    "password_too_short": "La contraseña debe tener al menos 6 caracteres.",
+    "required_field": "Este campo es obligatorio."
   },
   "map": {
     "title": "Mapa de Estaciones de Carga",
     "search_placeholder": "Buscar estaciones o direcciones",
     "no_results": "No se encontraron resultados",
-    "directions": "Cómo llegar",
+    "directions": "Obtener Direcciones",
     "distance": "Distancia",
     "duration": "Duración"
   },
   "station": {
     "details": "Detalles de la Estación",
     "rating": "Calificación",
-    "reviews": "opiniones",
-    "amenities": "Comodidades",
+    "reviews": "reseñas",
+    "amenities": "Servicios",
     "restaurant": "Restaurante",
     "wifi": "Wi-Fi",
     "bathroom": "Baño",
@@ -47,7 +57,7 @@
     "rate": "Calificar",
     "start_charging": "Iniciar Carga",
     "favorite": "Favorito",
-    "directions": "Cómo Llegar",
+    "directions": "Obtener Direcciones",
     "share": "Compartir"
   },
   "profile": {
@@ -56,10 +66,16 @@
     "settings": "Configuración",
     "history": "Historial",
     "favorites": "Favoritos",
-    "cars": "Mis Coches",
-    "add_car": "Añadir Coche",
+    "cars": "Mis Vehículos",
+    "add_car": "Agregar Vehículo",
     "dark_mode": "Modo Oscuro",
-    "language": "Idioma"
+    "language": "Idioma",
+    "distance_unit": "Unidad de Distancia",
+    "kilometers": "Kilómetros (km)",
+    "miles": "Millas (mi)",
+    "appearance": "Apariencia",
+    "select_language": "Seleccionar idioma",
+    "dark_mode_description": "Cambiar el modo de color de la aplicación."
   },
   "charging": {
     "history": "Historial de Carga",
@@ -70,13 +86,23 @@
     "duration": "Duración",
     "energy": "Energía",
     "cost": "Costo",
-    "start_time": "Hora de inicio",
-    "end_time": "Hora de finalización"
+    "start_time": "Hora de Inicio",
+    "end_time": "Hora de Finalización"
   },
   "offline": {
     "offline_mode": "Modo Sin Conexión",
-    "sync_complete": "Sincronización completada",
+    "sync_complete": "Sincronización completa",
     "sync_error": "Error de sincronización",
     "sync_in_progress": "Sincronizando datos..."
+  },
+  "language": {
+    "changed": "¡Idioma cambiado!",
+    "changed_description": "El idioma de la interfaz ha sido cambiado a"
+  },
+  "admin": {
+    "users_management": "Gestión de Usuarios",
+    "in_development": "Esta funcionalidad está en desarrollo.",
+    "users_management_coming_soon": "La gestión de usuarios estará disponible pronto.",
+    "status_message_placeholder": "El mensaje de estado del administrador aparecerá aquí."
   }
 }

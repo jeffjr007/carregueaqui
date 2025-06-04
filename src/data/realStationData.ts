@@ -1,4 +1,3 @@
-
 import { ChargingStation } from "@/types/station";
 
 // Real charging station data from Aracaju
@@ -17,6 +16,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. João Rodrigues, 42 - Industrial, Aracaju - SE",
     hours: "09:00 - 22:00",
     brand: "Zletric",
+    image_url: "/images/stations/aracaju-parque-shopping.jpg",
+    photos: [
+      "/images/stations/aracaju-parque-shopping-1.jpg",
+      "/images/stations/aracaju-parque-shopping-2.jpg"
+    ],
     amenities: {
       restaurant: true,
       wifi: true,
@@ -39,6 +43,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Gen. Euclídes Figueiredo, 351 - Lamarão, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "Genérico",
+    image_url: "/images/stations/monteiros-ferragens.jpg",
+    photos: [
+      "/images/stations/monteiros-ferragens-1.jpg",
+      "/images/stations/monteiros-ferragens-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: false,
@@ -61,6 +70,11 @@ export const realStationData: ChargingStation[] = [
     address: "Rua Acre, 2186 A - Siqueira Campos, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "Tupinambá",
+    image_url: "/images/stations/auto-pecas-vieira.jpg",
+    photos: [
+      "/images/stations/auto-pecas-vieira-1.jpg",
+      "/images/stations/auto-pecas-vieira-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: false,
@@ -71,7 +85,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "volvo-stark",
-    lngLat: [-37.0685, -10.9162], // Approximate coordinates
+    lngLat: [-37.0685, -10.9162],
     name: "Volvo Stark",
     status: "Disponível",
     type: "AC",
@@ -83,6 +97,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Pres. Tancredo Neves, 3960 - Ponto Novo, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "Volvo",
+    image_url: "/images/stations/volvo-stark.jpg",
+    photos: [
+      "/images/stations/volvo-stark-1.jpg",
+      "/images/stations/volvo-stark-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: true,
@@ -93,7 +112,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "portal-escritorio-virtual",
-    lngLat: [-37.0639, -10.9339], // Approximate coordinates
+    lngLat: [-37.0639, -10.9339],
     name: "Portal Escritório Virtual",
     status: "Indisponível",
     type: "DC",
@@ -105,6 +124,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Padre Nestor Sampaio, 140 - Luzia, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "Genérico",
+    image_url: "/images/stations/portal-escritorio.jpg",
+    photos: [
+      "/images/stations/portal-escritorio-1.jpg",
+      "/images/stations/portal-escritorio-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: true,
@@ -115,7 +139,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "peugeot-gama",
-    lngLat: [-37.0670, -10.9187], // Approximate coordinates
+    lngLat: [-37.0670, -10.9187],
     name: "Peugeot - Gama",
     status: "Disponível",
     type: "AC",
@@ -127,6 +151,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Tancredo Neves, 30402 - Ponto Novo, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "Peugeot",
+    image_url: "/images/stations/peugeot-gama.jpg",
+    photos: [
+      "/images/stations/peugeot-gama-1.jpg",
+      "/images/stations/peugeot-gama-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: true,
@@ -137,7 +166,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "versatto-jardins",
-    lngLat: [-37.0574, -10.9473], // Approximate coordinates
+    lngLat: [-37.0574, -10.9473],
     name: "Versatto Jardins",
     status: "Ocupado",
     type: "AC",
@@ -149,6 +178,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Dep. Sílvio Teixeira, 1105 - Jardins, Aracaju - SE",
     hours: "24 horas",
     brand: "Genérico",
+    image_url: "/images/stations/versatto-jardins.jpg",
+    photos: [
+      "/images/stations/versatto-jardins-1.jpg",
+      "/images/stations/versatto-jardins-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: false,
@@ -159,7 +193,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "ibis-aracaju",
-    lngLat: [-37.0481, -10.9368], // Approximate coordinates
+    lngLat: [-37.0481, -10.9368],
     name: "Ibis Aracaju",
     status: "Disponível",
     type: "AC",
@@ -171,6 +205,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Adélia Franco, 2719 - Grageru, Aracaju - SE",
     hours: "24 horas",
     brand: "Power2Go",
+    image_url: "/images/stations/ibis-aracaju.jpg",
+    photos: [
+      "/images/stations/ibis-aracaju-1.jpg",
+      "/images/stations/ibis-aracaju-2.jpg"
+    ],
     amenities: {
       restaurant: true,
       wifi: true,
@@ -181,7 +220,7 @@ export const realStationData: ChargingStation[] = [
   },
   {
     id: "shopping-jardins",
-    lngLat: [-37.0586, -10.9449], // Approximate coordinates
+    lngLat: [-37.0586, -10.9449],
     name: "Shopping Jardins",
     status: "Disponível",
     type: "AC",
@@ -193,6 +232,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Min. Geraldo Barreto Sobral, 198-324 - Jardins, Aracaju - SE",
     hours: "10:00 - 22:00",
     brand: "Neoenergia",
+    image_url: "/images/stations/shopping-jardins.jpg",
+    photos: [
+      "/images/stations/shopping-jardins-1.jpg",
+      "/images/stations/shopping-jardins-2.jpg"
+    ],
     amenities: {
       restaurant: true,
       wifi: true,
@@ -215,6 +259,11 @@ export const realStationData: ChargingStation[] = [
     address: "R. José Seabra Batista, s/n - Jardins, Aracaju - SE",
     hours: "07:00 - 22:00",
     brand: "Genérico",
+    image_url: "/images/stations/pao-de-acucar.jpg",
+    photos: [
+      "/images/stations/pao-de-acucar-1.jpg",
+      "/images/stations/pao-de-acucar-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: false,
@@ -237,6 +286,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Pres. Tancredo Neves, 2695 - Inácio Barbosa, Aracaju - SE",
     hours: "09:00 - 22:00",
     brand: "Genérico",
+    image_url: "/images/stations/ferreira-costa.jpg",
+    photos: [
+      "/images/stations/ferreira-costa-1.jpg",
+      "/images/stations/ferreira-costa-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: true,
@@ -259,6 +313,11 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Min. Geraldo Barreto Sobral, 1740 - Grageru, Aracaju - SE",
     hours: "08:00 - 18:00",
     brand: "BYD",
+    image_url: "/images/stations/byd-terra-santa.jpg",
+    photos: [
+      "/images/stations/byd-terra-santa-1.jpg",
+      "/images/stations/byd-terra-santa-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: true,
@@ -281,12 +340,41 @@ export const realStationData: ChargingStation[] = [
     address: "Av. Adélia Franco, 3735 - Grageru, Aracaju - SE",
     hours: "07:00 - 22:00",
     brand: "Genérico",
+    image_url: "/images/stations/assai-atacadista.jpg",
+    photos: [
+      "/images/stations/assai-atacadista-1.jpg",
+      "/images/stations/assai-atacadista-2.jpg"
+    ],
     amenities: {
       restaurant: false,
       wifi: false,
       bathroom: true,
       parking: true,
       shop: true,
+    },
+  },
+  {
+    id: "sitio-palmeira-azul",
+    lngLat: [-37.074677, -10.832377],
+    name: "Sítio Palmeira Azul",
+    status: "Indisponível",
+    type: "AC",
+    power: "7.4kW",
+    rating: 0,
+    reviews: 0,
+    connectors: 2,
+    connectorTypes: ["Tipo 2 (AC)"],
+    address: "R. Joséfa Marquês, 342 - Povoado Taicoca De Dentro, Nossa Sra. do Socorro - SE, 49160-000",
+    hours: "Sob consulta",
+    brand: "Genérico",
+    image_url: "public/images/stations/sitio-palmeira-azul.jpg",
+    photos: [],
+    amenities: {
+      restaurant: false,
+      wifi: true,
+      bathroom: true,
+      parking: true,
+      shop: false,
     },
   },
 ];

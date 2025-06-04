@@ -1,4 +1,3 @@
-
 {
   "common": {
     "loading": "Loading...",
@@ -22,7 +21,18 @@
     "forgot_password": "Forgot password?",
     "confirm_password": "Confirm password",
     "name": "Name",
-    "username": "Username"
+    "username": "Username",
+    "login_success": "Login successful!",
+    "register_success": "Account created successfully!",
+    "logout_success": "Logout successful!",
+    "reset_password_success": "Recovery email sent!",
+    "reset_password_error": "Error sending recovery email.",
+    "invalid_credentials": "Invalid email or password.",
+    "email_already_exists": "This email is already in use.",
+    "password_mismatch": "Passwords do not match.",
+    "invalid_email": "Invalid email.",
+    "password_too_short": "Password must be at least 6 characters long.",
+    "required_field": "This field is required."
   },
   "map": {
     "title": "Charging Stations Map",
@@ -59,7 +69,13 @@
     "cars": "My Cars",
     "add_car": "Add Car",
     "dark_mode": "Dark Mode",
-    "language": "Language"
+    "language": "Language",
+    "distance_unit": "Distance Unit",
+    "kilometers": "Kilometers (km)",
+    "miles": "Miles (mi)",
+    "appearance": "Appearance",
+    "select_language": "Select language",
+    "dark_mode_description": "Change the color mode of the application."
   },
   "charging": {
     "history": "Charging History",
@@ -78,5 +94,15 @@
     "sync_complete": "Sync complete",
     "sync_error": "Sync error",
     "sync_in_progress": "Syncing data..."
+  },
+  "language": {
+    "changed": "Language changed!",
+    "changed_description": "The interface language has been changed to"
+  },
+  "admin": {
+    "users_management": "User Management",
+    "in_development": "This feature is under development.",
+    "users_management_coming_soon": "User management will be available soon.",
+    "status_message_placeholder": "Admin status message will appear here."
   }
 }

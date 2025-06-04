@@ -1,9 +1,9 @@
 export interface ChargingStation {
-  id?: string;
+  id: string;
   lngLat: [number, number];
   name: string;
-  status: string;
-  type: string;
+  status: "Disponível" | "Ocupado" | "Indisponível";
+  type: "AC" | "DC" | "DC/AC";
   power: string;
   rating: number;
   reviews: number;
@@ -12,9 +12,8 @@ export interface ChargingStation {
   address: string;
   hours: string;
   brand: string;
-  price?: number;
-  isFavorite?: boolean;
-  image_url?: string;
+  image_url: string;
+  photos: string[];
   amenities: {
     restaurant: boolean;
     wifi: boolean;

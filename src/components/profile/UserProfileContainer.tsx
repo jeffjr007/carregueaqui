@@ -1,4 +1,3 @@
-
 import { useState, useEffect, ReactNode } from "react";
 import { Card } from "@/components/ui/card";
 import { useUserProfile } from "@/hooks/useUserProfile";
@@ -56,7 +55,7 @@ export const UserProfileContainer = ({
   };
 
   return (
-    <Card className="absolute left-0 top-0 w-full h-full md:left-4 md:top-16 md:w-80 p-4 z-20 bg-white/95 backdrop-blur-sm md:h-[calc(100vh-5rem)] overflow-y-auto rounded-none md:rounded-lg">
+    <Card className="absolute left-0 top-0 w-full h-full md:left-4 md:top-16 md:w-80 p-4 z-20 bg-white/95 backdrop-blur-sm md:h-[calc(100vh-5rem)] overflow-y-auto rounded-none md:rounded-lg z-[52]">
       {/* Render children if provided, otherwise render default content */}
       {children ? (
         children

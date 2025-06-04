@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
-import { Star, Zap, ZapOff, Heart, Share2, Navigation, Loader2 } from "lucide-react";
+import { Star, Zap, ZapOff, Share2, Navigation, Loader2, Heart } from "lucide-react";
 import { useFavoriteStation } from "@/hooks/useFavoriteStation";
+import { cn } from "@/lib/utils";
 
 interface ActionButtonsProps {
   onShowRating: () => void;
@@ -62,7 +62,7 @@ export const ActionButtons = ({
         {loading || initialLoading ? (
           <Loader2 className="w-4 h-4 mr-1 md:mr-2 animate-spin" />
         ) : (
-          <Heart className={`w-4 h-4 mr-1 md:mr-2 ${favoriteStatus ? 'fill-current' : ''}`} />
+          <Heart className={`w-5 h-5 mr-1 md:mr-2 ${favoriteStatus ? 'fill-current text-red-500' : 'text-gray-500'}`} />
         )}
         {favoriteStatus ? 'Favoritado' : 'Favoritar'}
       </Button>

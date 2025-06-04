@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { CreditCard, Plus, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -42,10 +41,11 @@ export const PaymentMethods = () => {
 
   return (
     <div>
-      <div className="flex items-center mb-3">
-        <CreditCard className="mr-2 h-5 w-5" /> 
-        <h3 className="font-medium">Métodos de Pagamento</h3>
-      </div>
+      {/* Removed internal heading and icon */}
+      {/* <div className="flex items-center mb-3"> */}
+      {/*   <CreditCard className="mr-2 h-5 w-5" /> */}
+      {/*   <h3 className="font-medium">Métodos de Pagamento</h3> */}
+      {/* </div> */}
       
       <Card className="p-3 mb-3 border border-gray-200">
         <div className="flex justify-between items-center">

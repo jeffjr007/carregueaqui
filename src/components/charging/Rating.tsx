@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -104,7 +103,7 @@ export const Rating = ({ onSubmit, onClose, stationId, userId }: RatingProps) =>
   };
 
   return (
-    <Card className={`${isMobile ? 'fixed inset-4 z-50' : 'fixed inset-4 md:inset-auto md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-96'} p-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg modal-mobile-full`}>
+    <Card className={`${isMobile ? 'fixed inset-4 z-50' : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-96'} p-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg`}>
       <div className="space-y-4">
         <div className="flex justify-between items-start">
           <h3 className="text-lg font-semibold">Avaliar Estação</h3>

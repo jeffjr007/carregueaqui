@@ -1,7 +1,6 @@
-
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 interface StationPhotosProps {
@@ -9,6 +8,7 @@ interface StationPhotosProps {
 }
 
 export const StationPhotos = ({ photos }: StationPhotosProps) => {
+  console.log('StationPhotos - photos:', photos);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
   const openFullscreen = (index: number) => {
@@ -29,6 +29,10 @@ export const StationPhotos = ({ photos }: StationPhotosProps) => {
     }
   };
 
+  if (!photos || photos.length === 0) {
+    return null;
+  }
+
   return (
     <div className="space-y-3">
       <h3 className="text-lg font-medium">Fotos</h3>
@@ -37,19 +41,19 @@ export const StationPhotos = ({ photos }: StationPhotosProps) => {
         {photos.map((photo, index) => (
           <div 
             key={index} 
-            className="aspect-video rounded-md overflow-hidden cursor-pointer"
+            className="aspect-video rounded-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
             onClick={() => openFullscreen(index)}
           >
             <img 
               src={photo} 
               alt={`Foto ${index + 1} da estação`} 
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
         ))}
       </div>
 
-      {/* Fullscreen Dialog */}
       <Dialog open={selectedPhotoIndex !== null} onOpenChange={() => closeFullscreen()}>
         <DialogContent className="sm:max-w-[90vw] p-0 bg-black overflow-hidden">
           <div className="relative w-full h-full">

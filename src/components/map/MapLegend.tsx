@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, CarFront, X } from "lucide-react";
+import { MapPin, X } from "lucide-react";
 import { useState } from "react";
 
 export const MapLegend = () => {
@@ -9,7 +9,7 @@ export const MapLegend = () => {
   const legendItems = [
     { icon: <MapPin className="text-primary" />, label: "Carregador Disponível" },
     { icon: <MapPin className="text-yellow-500" />, label: "Carregador Ocupado" },
-    { icon: <CarFront className="text-gray-500" />, label: "Estacionamento" },
+    { icon: <MapPin className="text-red-500" />, label: "Carregador Indisponível" },
   ];
 
   if (!isVisible) {

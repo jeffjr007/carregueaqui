@@ -1,4 +1,3 @@
-
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
@@ -12,6 +11,11 @@ import RegisterForm from "./components/RegisterForm";
 import Map from "./components/Map";
 import AdminPanel from "./components/admin/AdminPanel";
 import NotFound from "./pages/NotFound";
+import Terms from "@/pages/Terms";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import AboutApp from "@/pages/AboutApp";
+import { IntroductionScreen } from "./components/IntroductionScreen";
+import { ProjectDetails } from "./components/ProjectDetails";
 
 // Import i18n
 import './i18n';
@@ -41,12 +45,17 @@ const queryClient = new QueryClient();
 const App = () => {
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [showIntroduction, setShowIntroduction] = useState(true);
+  const [showProjectDetails, setShowProjectDetails] = useState(false);
 
   useEffect(() => {
     // Check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
+      if (session) {
+        setShowIntroduction(false);
+      }
     });
 
     // Listen for auth changes
@@ -59,6 +68,18 @@ const App = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const handleIntroductionComplete = () => {
+    setShowIntroduction(false);
+  };
+
+  const handleShowDetails = () => {
+    setShowProjectDetails(true);
+  };
+
+  const handleCloseDetails = () => {
+    setShowProjectDetails(false);
+  };
+
   return (
     <Sentry.ErrorBoundary fallback={<p>Um erro ocorreu. Nossa equipe foi notificada.</p>}>
       <QueryClientProvider client={queryClient}>
@@ -70,6 +91,17 @@ const App = () => {
               <LoadingScreen />
             ) : (
               <>
+                {showIntroduction && !session && (
+                  <IntroductionScreen onComplete={handleIntroductionComplete} />
+                )}
+                {showProjectDetails && (
+                  <ProjectDetails
+                    onClose={handleCloseDetails}
+                    githubUrl="https://github.com/jeffjr007"
+                    linkedinUrl="https://www.linkedin.com/in/jeferson-junior-as"
+                    email="jeffjr007z@gmail.com"
+                  />
+                )}
                 <Routes>
                   <Route
                     path="/"
@@ -84,7 +116,7 @@ const App = () => {
                   <Route
                     path="/login"
                     element={
-                      session ? <Navigate to="/map" replace /> : <LoginForm />
+                      session ? <Navigate to="/map" replace /> : <LoginForm onShowDetails={handleShowDetails} />
                     }
                   />
                   <Route
@@ -105,6 +137,9 @@ const App = () => {
                       session ? <AdminPanel /> : <Navigate to="/login" replace />
                     }
                   />
+                  <Route path="/termos" element={<Terms />} />
+                  <Route path="/privacidade" element={<PrivacyPolicy />} />
+                  <Route path="/sobre" element={<AboutApp />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </>

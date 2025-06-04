@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { Clock, Heart, Menu, User } from "lucide-react";
+import { Clock, Menu, User, Bookmark } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useMapState } from "@/contexts/MapStateContext";
 import { PopupManager } from "./PopupManager";
@@ -90,7 +89,7 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
           />
           
           <NavButton 
-            icon={<Heart className="h-5 w-5" />} 
+            icon={<Bookmark className="h-5 w-5" />} 
             label="Salvos" 
             isActive={activeTab === "favorites"} 
             onClick={() => handleTabChange("favorites")} 

@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, MutableRefObject } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -84,7 +83,7 @@ export const MapContainer = memo(({
         setTimeout(() => {
           try {
             // Ativar a localização do usuário automaticamente
-            geolocateControl.trigger();
+            // geolocateControl.trigger(); // DESABILITADO: Só ativa se o usuário clicar no botão
           } catch (locError) {
             console.warn("Erro ao ativar localização automática:", locError);
           }
