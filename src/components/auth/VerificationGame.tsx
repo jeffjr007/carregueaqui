@@ -29,13 +29,11 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
   const gameLoopRef = useRef<number>();
   const { toast } = useToast();
 
-  // Configurações do jogo
   const GRID_SIZE = 20;
-  const CELL_SIZE = 20;
-  const GAME_WIDTH = 400;
-  const GAME_HEIGHT = 300;
+  const [gameWidth, setGameWidth] = useState(400);
+  const [gameHeight, setGameHeight] = useState(300);
+  const [cellSize, setCellSize] = useState(20);
 
-  // Velocidades e pontuação necessária baseadas na dificuldade
   const GAME_SPEEDS = {
     easy: 300,
     medium: 200,
@@ -58,8 +56,8 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
   };
 
   const spawnEnergy = () => {
-    const maxX = Math.floor(GAME_WIDTH / CELL_SIZE) - 2;
-    const maxY = Math.floor(GAME_HEIGHT / CELL_SIZE) - 2;
+    const maxX = Math.floor(gameWidth / cellSize) - 2;
+    const maxY = Math.floor(gameHeight / cellSize) - 2;
     
     let newEnergy: Position;
     do {
@@ -93,18 +91,16 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
           break;
       }
 
-      // Verificar colisão com as paredes
       if (
         head.x < 0 || 
-        head.x >= GAME_WIDTH / CELL_SIZE || 
+        head.x >= gameWidth / cellSize || 
         head.y < 0 || 
-        head.y >= GAME_HEIGHT / CELL_SIZE
+        head.y >= gameHeight / cellSize
       ) {
         setGameOver(true);
         return prevCar;
       }
 
-      // Verificar colisão com o próprio carro
       if (prevCar.some(segment => segment.x === head.x && segment.y === head.y)) {
         setGameOver(true);
         return prevCar;
@@ -112,7 +108,6 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
 
       const newCar = [head, ...prevCar];
 
-      // Verificar se coletou energia
       if (head.x === energy.x && head.y === energy.y) {
         setScore(prev => {
           const newScore = prev + 1;
@@ -128,7 +123,6 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
         });
         spawnEnergy();
       } else {
-        // Permite crescimento normal em todos os modos
         newCar.pop();
       }
 
@@ -166,6 +160,25 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
       }
     };
   }, [gameStarted, gameOver, direction, difficulty]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (gameAreaRef.current) {
+        const containerWidth = gameAreaRef.current.offsetWidth;
+        const calculatedCellSize = Math.min(20, Math.floor(containerWidth / GRID_SIZE));
+        setCellSize(calculatedCellSize);
+        setGameWidth(calculatedCellSize * GRID_SIZE);
+        setGameHeight(calculatedCellSize * Math.floor(300 / 20));
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [GRID_SIZE]);
 
   return (
     <Card className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
@@ -211,65 +224,54 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
         
         <div 
           ref={gameAreaRef}
-          className="relative w-full h-[300px] bg-gray-800 rounded-lg mb-4 overflow-hidden"
-          style={{ width: GAME_WIDTH, height: GAME_HEIGHT }}
+          className="relative w-full bg-gray-800 rounded-lg mb-4 overflow-hidden"
+          style={{ 
+            aspectRatio: '4/3',
+            maxWidth: '100%',
+            margin: '0 auto'
+          }}
         >
-          {/* Flickering Grid Background */}
           <FlickeringGrid
-            className="absolute inset-0 z-0 size-full"
+            className="absolute inset-0 z-0"
             squareSize={4}
             gridGap={6}
             color="#6B7280"
             maxOpacity={0.3}
             flickerChance={0.1}
-            height={GAME_HEIGHT}
-            width={GAME_WIDTH}
+            height={Number(gameHeight)}
+            width={Number(gameWidth)}
           />
 
-          {/* Grade de fundo (mantida para visualização da área) */}
-          {/* Removida a renderização visual da grade para não sobrepor o FlickeringGrid */}
-          {/* {Array.from({ length: 20 }).map((_, i) =>
-              Array.from({ length: 15 }).map((_, j) => (
-                <div
-                  key={`${i}-${j}`}
-                  className="border border-gray-700"
-                />
-              ))
-            )} */}
-
-          {/* Carro */}
           {car.map((segment, index) => (
             <div
               key={index}
               className="absolute bg-blue-500 rounded-lg flex items-center justify-center"
               style={{
-                width: CELL_SIZE,
-                height: CELL_SIZE,
-                left: segment.x * CELL_SIZE,
-                top: segment.y * CELL_SIZE,
+                width: cellSize,
+                height: cellSize,
+                left: segment.x * cellSize,
+                top: segment.y * cellSize,
                 transform: index === 0 ? 'scale(1.2)' : 'scale(1)',
-                zIndex: car.length - index + 1 // Aumentar zIndex para ficar acima do grid
+                zIndex: car.length - index + 1
               }}
             >
               {index === 0 && <span className="text-white text-sm">🚗</span>}
             </div>
           ))}
 
-          {/* Energia */}
           <div
             className="absolute bg-yellow-400 rounded-full flex items-center justify-center animate-pulse"
             style={{
-              width: CELL_SIZE,
-              height: CELL_SIZE,
-              left: energy.x * CELL_SIZE,
-              top: energy.y * CELL_SIZE,
-              zIndex: car.length + 2 // Aumentar zIndex para ficar acima do carro e do grid
+              width: cellSize,
+              height: cellSize,
+              left: energy.x * cellSize,
+              top: energy.y * cellSize,
+              zIndex: car.length + 2
             }}
           >
             <span className="text-white text-sm">⚡</span>
           </div>
 
-          {/* Game Over ou Start */}
           {!gameStarted && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
               <Button onClick={startGame}>
@@ -289,24 +291,21 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
             </div>
           )}
 
-          {/* Botões de Controle */}
           {gameStarted && !gameOver && (
-            <div className="absolute bottom-2 right-2 flex flex-col items-center gap-1 z-10">
-              {/* Botão Up */}
+            <div className="absolute bottom-2 left-2 flex flex-col items-center gap-1 z-10">
               <button
                 onClick={() => direction !== 'DOWN' && setDirection('UP')}
-                className="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg"
+                className="w-8 h-8 bg-white/50 hover:bg-white/70 rounded-full flex items-center justify-center shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                 </svg>
               </button>
               
-              {/* Botões Left/Right */}
               <div className="flex gap-1">
                 <button
                   onClick={() => direction !== 'RIGHT' && setDirection('LEFT')}
-                  className="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg"
+                  className="w-8 h-8 bg-white/50 hover:bg-white/70 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -315,7 +314,7 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
                 
                 <button
                   onClick={() => direction !== 'LEFT' && setDirection('RIGHT')}
-                  className="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg"
+                  className="w-8 h-8 bg-white/50 hover:bg-white/70 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -323,10 +322,9 @@ export const VerificationGame = ({ onVerificationComplete, onClose }: Verificati
                 </button>
               </div>
               
-              {/* Botão Down */}
               <button
                 onClick={() => direction !== 'UP' && setDirection('DOWN')}
-                className="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg"
+                className="w-8 h-8 bg-white/50 hover:bg-white/70 rounded-full flex items-center justify-center shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

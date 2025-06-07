@@ -15,27 +15,30 @@ const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [nameError, setNameError] = useState<string | null>(null);
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [nameError, setNameError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
   const [showPassword, setShowPassword] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
-  const { register, loading, error } = useAuth({ redirectTo: "/login" });
+  const { register, loading, error: authError } = useAuth({ redirectTo: "/login" });
 
   // Validação em tempo real enquanto o usuário digita
   useEffect(() => {
     if (name) {
-      setNameError(getNameErrorMessage(name));
+      const error = getNameErrorMessage(name);
+      setNameError(error || "");
     }
     
     if (email) {
-      setEmailError(getEmailErrorMessage(email));
+      const error = getEmailErrorMessage(email);
+      setEmailError(error || "");
     }
     
     if (password) {
-      setPasswordError(getPasswordErrorMessage(password));
+      const error = getPasswordErrorMessage(password);
+      setPasswordError(error || "");
     }
   }, [name, email, password]);
 
@@ -47,13 +50,15 @@ const RegisterForm = () => {
   }, [name, email, password, formSubmitted]);
 
   const validateForm = () => {
-    setNameError(getNameErrorMessage(name));
-    setEmailError(getEmailErrorMessage(email));
-    setPasswordError(getPasswordErrorMessage(password));
+    const nameErrorMsg = getNameErrorMessage(name);
+    const emailErrorMsg = getEmailErrorMessage(email);
+    const passwordErrorMsg = getPasswordErrorMessage(password);
     
-    return !getNameErrorMessage(name) && 
-           !getEmailErrorMessage(email) && 
-           !getPasswordErrorMessage(password);
+    setNameError(nameErrorMsg || "");
+    setEmailError(emailErrorMsg || "");
+    setPasswordError(passwordErrorMsg || "");
+    
+    return !nameErrorMsg && !emailErrorMsg && !passwordErrorMsg;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -109,7 +114,7 @@ const RegisterForm = () => {
       title="Crie sua conta"
       subtitle="Comece a carregar seu veículo em minutos"
       icon={appIcon}
-      error={error}
+      error={authError || undefined}
       onSubmit={handleSubmit}
     >
       <div className="space-y-4">
