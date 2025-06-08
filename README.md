@@ -25,7 +25,7 @@ A modern web application for managing electric vehicle charging stations.
 git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory
-cd ecar-loading
+cd carregueaqui
 
 # Step 3: Install dependencies
 npm install
