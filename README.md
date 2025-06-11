@@ -2,24 +2,6 @@
 
 **CarregueAqui** é um aplicativo **web e mobile** desenvolvido como **Trabalho de Conclusão de Curso (TCC)** do curso Técnico em Desenvolvimento de Sistemas no **SENAI/SE**. O projeto tem como objetivo facilitar a vida de motoristas de veículos elétricos, permitindo que encontrem e gerenciem pontos de carregamento com praticidade e eficiência.
 
----
-
-## ✅ Validação Técnica
-
-Este projeto foi analisado por um avaliador técnico, que confirmou:
-
-- Total alinhamento entre as tecnologias descritas e as realmente utilizadas.
-- Estrutura de pastas bem organizada, com separação clara entre componentes, páginas, serviços, tipos e testes.
-- Implementação fiel de funcionalidades modernas, como:
-  - Mapas interativos com **Mapbox GL**
-  - Autenticação segura via **Supabase Auth**
-  - Integração em tempo real com banco de dados **PostgreSQL**
-  - Suporte **mobile Android** com **React Native** e **Capacitor**
-  - **Progressive Web App (PWA)** com `vite-plugin-pwa`
-  - Suporte à **internacionalização (i18n)**
-
----
-
 ## 🧠 Tecnologias Utilizadas
 
 ### Web
@@ -45,7 +27,6 @@ Este projeto foi analisado por um avaliador técnico, que confirmou:
 - Suporte a PWA
 - Responsividade mobile
 
----
 
 ## 📱 Funcionalidades
 
@@ -57,7 +38,6 @@ Este projeto foi analisado por um avaliador técnico, que confirmou:
 - 🌐 Suporte multilíngue (i18n)  
 - 📱 Acesso via navegador ou app Android  
 
----
 
 ## 💡 Funcionalidades Futuras
 
@@ -66,17 +46,14 @@ Este projeto foi analisado por um avaliador técnico, que confirmou:
 - 👥 Avaliações e comentários entre usuários
 - 🔔 Notificações personalizadas
 
----
 
 ## 👨‍💻 Desenvolvedor
 
 Projeto desenvolvido por **Jeferson Júnior** como parte do **TCC do curso Técnico em Desenvolvimento de Sistemas** no **SENAI/SE**, sob orientação do professor **Neilton**.
 
----
 
 ## 🚀 Executando Localmente
 
-```bash
 # Clone o repositório
 git clone https://github.com/seu-usuario/carregueaqui.git
 cd carregueaqui
@@ -86,23 +63,3 @@ npm install
 
 # Rode a aplicação
 npm run dev
-```
-
-### 📱 Versão Mobile
-
-Para executar a versão mobile, após instalar as dependências:
-
-```bash
-# Adiciona a plataforma Android
-npx cap add android
-
-# Sincroniza as alterações com o projeto Android
-npx cap sync android
-
-# Abre o projeto no Android Studio
-npx cap open android
-```
-
-## Development
-
-The development server will start at `
