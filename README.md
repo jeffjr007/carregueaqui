@@ -49,7 +49,7 @@
 
 ## 👨‍💻 Desenvolvedor
 
-Projeto desenvolvido por **Jeferson Júnior** como parte do **TCC do curso Técnico em Desenvolvimento de Sistemas** no **SENAI/SE**, sob orientação do professor **Neilton**.
+Projeto desenvolvido por **Jeferson Júnior** como parte do **TCC do curso Técnico em Desenvolvimento de Sistemas** no **SENAI/SE**.
 
 
 ## 🚀 Executando Localmente
