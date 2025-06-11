@@ -1,77 +1,108 @@
-# E-Car Loading
+# ⚡ CarregueAqui
 
-A modern web application for managing electric vehicle charging stations.
+**CarregueAqui** é um aplicativo **web e mobile** desenvolvido como **Trabalho de Conclusão de Curso (TCC)** do curso Técnico em Desenvolvimento de Sistemas no **SENAI/SE**. O projeto tem como objetivo facilitar a vida de motoristas de veículos elétricos, permitindo que encontrem e gerenciem pontos de carregamento com praticidade e eficiência.
 
-## Technologies Used
+---
 
+## ✅ Validação Técnica
+
+Este projeto foi analisado por um avaliador técnico, que confirmou:
+
+- Total alinhamento entre as tecnologias descritas e as realmente utilizadas.
+- Estrutura de pastas bem organizada, com separação clara entre componentes, páginas, serviços, tipos e testes.
+- Implementação fiel de funcionalidades modernas, como:
+  - Mapas interativos com **Mapbox GL**
+  - Autenticação segura via **Supabase Auth**
+  - Integração em tempo real com banco de dados **PostgreSQL**
+  - Suporte **mobile Android** com **React Native** e **Capacitor**
+  - **Progressive Web App (PWA)** com `vite-plugin-pwa`
+  - Suporte à **internacionalização (i18n)**
+
+---
+
+## 🧠 Tecnologias Utilizadas
+
+### Web
+- React + TypeScript
 - Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Supabase
-- Capacitor (for mobile support)
+- Tailwind CSS + Shadcn/UI
+- Mapbox GL JS
+- React Router
+- TanStack Query
+- i18next
 
-## Getting Started
+### Backend
+- Supabase (PostgreSQL, Auth, Edge Functions, Storage)
 
-### Prerequisites
+### Mobile
+- React Native + Capacitor
+- Android (via `@capacitor/android`)
 
-- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Outros Recursos
+- i18n (internacionalização multilíngue)
+- Testes automatizados (diretório `tests`)
+- Arquitetura baseada em componentes
+- Suporte a PWA
+- Responsividade mobile
 
-### Installation
+---
 
-```sh
-# Step 1: Clone the repository
-git clone <YOUR_GIT_URL>
+## 📱 Funcionalidades
 
-# Step 2: Navigate to the project directory
+- 🔍 Localização de estações de carregamento via mapa interativo  
+- 🔐 Autenticação e gerenciamento de conta  
+- 🚗 Cadastro e gerenciamento de veículos  
+- ⭐ Favoritar estações  
+- 🕓 Histórico de carregamentos  
+- 🌐 Suporte multilíngue (i18n)  
+- 📱 Acesso via navegador ou app Android  
+
+---
+
+## 💡 Funcionalidades Futuras
+
+- 💳 Pagamento por carregamento
+- 📅 Reserva antecipada de estações
+- 👥 Avaliações e comentários entre usuários
+- 🔔 Notificações personalizadas
+
+---
+
+## 👨‍💻 Desenvolvedor
+
+Projeto desenvolvido por **Jeferson Júnior** como parte do **TCC do curso Técnico em Desenvolvimento de Sistemas** no **SENAI/SE**, sob orientação do professor **Neilton**.
+
+---
+
+## 🚀 Executando Localmente
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/carregueaqui.git
 cd carregueaqui
 
-# Step 3: Install dependencies
+# Instale as dependências
 npm install
 
-# Step 4: Start the development server
+# Rode a aplicação
 npm run dev
+```
+
+### 📱 Versão Mobile
+
+Para executar a versão mobile, após instalar as dependências:
+
+```bash
+# Adiciona a plataforma Android
+npx cap add android
+
+# Sincroniza as alterações com o projeto Android
+npx cap sync android
+
+# Abre o projeto no Android Studio
+npx cap open android
 ```
 
 ## Development
 
-The development server will start at `http://localhost:5173` with hot-reload enabled.
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run build:dev` - Build for development
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
-
-## Mobile Development
-
-This project uses Capacitor for mobile development. To build for Android:
-
-```sh
-# Build the web app
-npm run build
-
-# Add Android platform (if not already added)
-npx cap add android
-
-# Copy web assets
-npx cap copy android
-
-# Open in Android Studio
-npx cap open android
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+The development server will start at `
