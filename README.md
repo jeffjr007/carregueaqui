@@ -54,8 +54,17 @@ Projeto desenvolvido por **Jeferson Junior** como parte do **TCC do curso Técni
 
 ## Telas do aplicativo/site
 
+#Tela de login
+
 ![Tela de login](https://github.com/user-attachments/assets/73c66cc1-cc63-4f3f-aeda-51710ac1ea5c)
 
+#Tela principal 
+
+![Tela principal](https://github.com/user-attachments/assets/d7bcf0b9-447b-4843-b924-5bf6a276589c)
+
+#Tela principal 
+
+![Tela de perfil de usuario](https://github.com/user-attachments/assets/cf128c5a-cc5a-4e37-bea5-0a035acc0d82)
 
 
 ## 🚀 Executando Localmente
