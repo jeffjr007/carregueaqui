@@ -62,9 +62,21 @@ Projeto desenvolvido por **Jeferson Junior** como parte do **TCC do curso Técni
 
 ![Tela principal](https://github.com/user-attachments/assets/d7bcf0b9-447b-4843-b924-5bf6a276589c)
 
-#Tela principal 
+#Tela do perfil de usuário 
 
 ![Tela de perfil de usuario](https://github.com/user-attachments/assets/cf128c5a-cc5a-4e37-bea5-0a035acc0d82)
+
+#Tela de detalhes de estações de carregamento.
+
+![Tela de detalhes de estacao de carregamento](https://github.com/user-attachments/assets/81c3d720-74a5-4db0-a7c2-499e11449d0b)
+
+#Tela de configuração 
+
+![Tela de configuracoes](https://github.com/user-attachments/assets/71759d15-334a-4b1f-8b70-85538dea2231)
+
+#Tela de estações favoritas e recentes 
+
+![Tela de estações favoritas e recentes](https://github.com/user-attachments/assets/4a831d80-0930-4093-9726-370b03fec0f3)
 
 
 ## 🚀 Executando Localmente
