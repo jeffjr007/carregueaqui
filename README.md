@@ -87,6 +87,11 @@ cd carregueaqui
 
 #ou entre pelo link do vercel : #https://carregueaqui.vercel.app/#
 
+#Use o usuário
+
+teste@gmail.com
+senha: teste123
+
 # Instale as dependências
 npm install
 
