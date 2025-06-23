@@ -52,6 +52,11 @@
 
 Projeto desenvolvido por **Jeferson Junior** como parte do **TCC do curso Técnico em Desenvolvimento de Sistemas** no **SENAI/SE**.
 
+## Telas do aplicativo/site
+
+![Tela de login](https://github.com/user-attachments/assets/73c66cc1-cc63-4f3f-aeda-51710ac1ea5c)
+
+
 
 ## 🚀 Executando Localmente
 
