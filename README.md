@@ -36,7 +36,8 @@
 - ⭐ Favoritar estações  
 - 🕓 Histórico de carregamentos  
 - 🌐 Suporte multilíngue (i18n)  
-- 📱 Acesso via navegador ou app Android  
+- 📱 Acesso via navegador ou app Android
+- 🎮 Jogo da cobrinha para verificação (extra) 
 
 
 ## 💡 Funcionalidades Futuras
@@ -57,6 +58,8 @@ Projeto desenvolvido por **Jeferson Junior** como parte do **TCC do curso Técni
 # Clone o repositório
 git clone https://github.com/seu-usuario/carregueaqui.git
 cd carregueaqui
+
+#ou entre pelo link do vercel : #https://carregueaqui.vercel.app/#
 
 # Instale as dependências
 npm install
